@@ -1,0 +1,17 @@
+Index: DateFormatUtils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DateFormatUtils.java b/DateFormatUtils.java
+--- a/DateFormatUtils.java	(revision 93e8632db3aae444ae4b3c342580b16d9359afd0)
++++ b/DateFormatUtils.java	(date 1637689724658)
+@@ -7,7 +7,7 @@
+ 
+ public class DateFormatUtils {
+ 
+-    private static final DateFormat DD_MMM_YYYY = new SimpleDateFormat("dd MMM yyyy");
++    private final DateFormat DD_MMM_YYYY = new SimpleDateFormat("dd MMM yyyy");
+ 
+     public Date toDate(String date) throws ParseException {
+         return DD_MMM_YYYY.parse(date);
