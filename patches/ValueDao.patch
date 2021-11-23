@@ -1,0 +1,44 @@
+Index: ValueDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ValueDao.java b/ValueDao.java
+--- a/ValueDao.java	(revision 93e8632db3aae444ae4b3c342580b16d9359afd0)
++++ b/ValueDao.java	(date 1637689992810)
+@@ -12,22 +12,29 @@
+ public class ValueDao {
+ 
+     public String findByName(String name) throws SQLException {
+-        String sql = "SELECT value FROM data WHERE name = '" + name + "' AND access_level > 2";
+         String result;
+-        try (Connection conn = getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt
+-                .executeQuery(sql)) {
++        try (Connection conn = getConnection(); PreparedStatement stmt = prepareStatement(conn, name); ResultSet rs = stmt
++                .executeQuery()) {
+             result = rs.getString(1);
+         }
+         return result;
+     }
+ 
++    @edu.umd.cs.findbugs.annotations.SuppressWarnings({ "OBL_UNSATISFIED_OBLIGATION" })
++    private PreparedStatement prepareStatement(Connection conn, String name) throws SQLException {
++        String sql = "SELECT value FROM data WHERE name = ? AND access_level > 2";
++        PreparedStatement ps = conn.prepareStatement(sql);
++        ps.setString(1, name);
++        return ps;
++    }
++
+     @edu.umd.cs.findbugs.annotations.SuppressWarnings({ "OBL_UNSATISFIED_OBLIGATION" })
+     private Connection getConnection() throws SQLException {
+-        Statement stmt = mock(Statement.class);
+-        given(stmt.executeQuery(anyString())).willReturn(mock(ResultSet.class));
++        PreparedStatement stmt = mock(PreparedStatement.class);
++        given(stmt.executeQuery()).willReturn(mock(ResultSet.class));
+ 
+         Connection conn = mock(Connection.class);
+-        given(conn.createStatement()).willReturn(stmt);
++        given(conn.prepareStatement(anyString())).willReturn(stmt);
+ 
+         return conn;
+     }
