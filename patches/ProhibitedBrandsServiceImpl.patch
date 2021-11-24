@@ -1,0 +1,17 @@
+Index: ProhibitedBrandsServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ProhibitedBrandsServiceImpl.java b/ProhibitedBrandsServiceImpl.java
+--- a/ProhibitedBrandsServiceImpl.java	(revision 5afcf892dcd39f5dfec63a7a2fa5b8c122d644c6)
++++ b/ProhibitedBrandsServiceImpl.java	(date 1637750071912)
+@@ -25,7 +25,7 @@
+ @Singleton
+ public class ProhibitedBrandsServiceImpl implements ProhibitedBrandsService {
+ 
+-    public static Logger log;
++    public static final Logger log;
+ 
+     // Tabaco
+     public static final String MARLBORO = "Marlboro";
