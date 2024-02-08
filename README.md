@@ -1,4 +1,4 @@
-# BSI_violations_CERT by Anastasiia Ponkratova, Julia Migiel
+# BSI-violations-CERT by Anastasiia Ponkratova, Julia Migiel
 
 
 ### ProhibitedBrandsServiceImpl
